@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AppContext } from "../../Context/AppContext";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const UserBlogs = () => {
   const [data, setData] = useState([]);
   const { blogs, backendUrl, user } = useContext(AppContext);
+  const navigate = useNavigate()
 
   const setUserBlogs = () => {
     const userBlogs = blogs.filter((item) => item.authorEmail == user.email);
@@ -78,7 +80,7 @@ const UserBlogs = () => {
                     <button
                       className="bg-blue-500 text-white px-3 py-1 rounded mx-2"
                       onClick={() =>
-                        (window.location.href = `/blogs/${blog._id}`)
+                        navigate(`/blogs/${blog._id}`)
                       }
                     >
                       View
